@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from "react";
-import './style.css';
+import "./style.css";
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = useState(config);
 
   const sortedItems = useMemo(() => {
     let sortableItems = [...items];
-    console.log(sortableItems)
+    // console.log(sortableItems);
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -50,33 +50,39 @@ const EmployeeTable = (props) => {
       <thead>
         <tr>
           <th>
-            <p>First Name</p>
             <button
               type="button"
               onClick={() => requestSort("first_name")}
               className={getClassNamesFor("first_name")}
             >
-              Sort
+              First Name
             </button>
           </th>
           <th>
-            <p>Last Name</p>
             <button
               type="button"
               onClick={() => requestSort("last_name")}
               className={getClassNamesFor("last_name")}
             >
-              Sort
+              Last Name
             </button>
           </th>
-          <th>
-            <p>Company</p>
+          {/* <th>
             <button
               type="button"
               onClick={() => requestSort("company_name")}
               className={getClassNamesFor("company_name")}
             >
-              Sort
+              Company
+            </button>
+          </th> */}
+          <th>
+            <button
+              type="button"
+              onClick={() => requestSort("city")}
+              className={getClassNamesFor("city")}
+            >
+              City, State
             </button>
           </th>
         </tr>
@@ -86,7 +92,10 @@ const EmployeeTable = (props) => {
           <tr key={employee.id}>
             <td>{employee.first_name}</td>
             <td>{employee.last_name}</td>
-            <td>{employee.company_name}</td>
+            {/* <td>{employee.company_name}</td> */}
+            <td>
+              {employee.city}, {employee.state}
+            </td>
           </tr>
         ))}
       </tbody>
