@@ -1,0 +1,7 @@
+.jumbotron {
+  background: #fff674;
+  /* background: url(); */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
