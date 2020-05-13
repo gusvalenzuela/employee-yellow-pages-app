@@ -1,8 +1,12 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import EmployeeContext from "../../utils/EmployeeContext";
+
 import "./style.css";
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = useState(config);
+
+  // console.log(employeeObj)
 
   const sortedItems = useMemo(() => {
     let sortableItems = [...items];
@@ -36,8 +40,9 @@ const useSortableData = (items, config = null) => {
   return { data: sortedItems, requestSort, sortConfig };
 };
 
-const EmployeeTable = (props) => {
-  const { data, requestSort, sortConfig } = useSortableData(props.employees);
+const EmployeeTable = () => {
+  const { employees } = useContext(EmployeeContext);
+  const { data, requestSort, sortConfig } = useSortableData(employees);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
