@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Wrapper>
-        <Route exact path="/" component={Homepage} />
+        <Route exact path="/" component={Directory} />
         <Route exact path="/directory" component={Directory} />
       </Wrapper>
     </Router>
