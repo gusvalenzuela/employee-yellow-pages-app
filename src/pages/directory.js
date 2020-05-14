@@ -7,12 +7,15 @@ import EmployeeTable from "../components/EmployeeTable";
 import SearchForm from "../components/SearchForm";
 import Employees from "../employees.json";
 import EmployeeContext from "../utils/EmployeeContext.js";
+import Alert from "../components/Alert";
 // import PageHolder from "../components/PageHolder";
 
 function Directory() {
   const [search, setSearch] = useState("");
-  const [filter, setFilter ] = useState("");
+  const [filter, setFilter] = useState("");
+  const [alert, setAlert] = useState(false);
   const [searchOption, setSearchOption] = useState("first_name");
+  const [filterOption, setFilterOption] = useState("first_name");
   const [employees, setEmployees] = useState(Employees);
 
   useEffect(() => {
@@ -26,49 +29,54 @@ function Directory() {
         let fEmployees = Employees.filter((i) =>
           i[searchOption].toLowerCase().includes(search.toLowerCase())
         );
+
         resolve(fEmployees);
       });
     }
 
     searchTerms(search).then((res) => {
+      setEmployees(res);
       if (res.length === 0) {
         console.log("No results found.");
+        setAlert(true);
+      } else {
+        setAlert(false);
       }
-
-      setEmployees(res);
     });
   }, [search, searchOption]);
 
   useEffect(() => {
-
     function searchTerms(filter) {
       return new Promise((resolve) => {
         if (!filter) {
           resolve(Employees);
         }
         let fEmployees = Employees.filter((i) =>
-        // starts with for when looking by beginning letter
-          i[searchOption].toLowerCase().startsWith(filter.toLowerCase())
+          // starts with for when looking by beginning letter
+          i[filterOption].toLowerCase().startsWith(filter.toLowerCase())
         );
         resolve(fEmployees);
       });
     }
 
     searchTerms(filter).then((res) => {
+      setSearch("");
+      setEmployees(res);
       if (res.length === 0) {
         console.log("No results found.");
+        setAlert(true);
+      } else {
+        setAlert(false);
       }
-
-      setEmployees(res);
     });
-  }, [filter, searchOption]);
+  }, [filter, filterOption]);
 
   const handleSelectChange = (event) => {
     if (!event.target.value) {
       setSearchOption("first_name");
     }
-    setSearch(search);
     setSearchOption(event.target.value);
+    setSearch(search);
   };
   const handleSearchChange = (event) => {
     if (!event.target.value) {
@@ -80,14 +88,15 @@ function Directory() {
     if (event.target.value !== undefined) {
       setFilter(event.target.value);
     }
-    console.log(event.target.value)
-    // setSearch(event.target.value);
+    setFilterOption(searchOption);
+    setSearch(search);
   };
 
   return (
     <div>
       <Jumbotron>
         <h1>The Employee Yellow Pages!</h1>
+        <h3>They're good people, Brent.</h3>
       </Jumbotron>
       <EmployeeContext.Provider
         value={{
@@ -119,6 +128,7 @@ function Directory() {
               <Col size="12">
                 <EmployeeTable />
               </Col>
+              <Alert display={alert} msg={`NO RESULTS FOUND`} search={search} />
             </Row>
           </Container>
         </div>

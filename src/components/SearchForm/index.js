@@ -15,7 +15,7 @@ function SearchForm() {
       {/* search rows  */}
       <div className="form-group row">
         <div className="col-md-auto pr-0">
-          <label htmlFor="search-by">Search</label>
+          <label htmlFor="search-by">Search in</label>
           <select
             name="search-options"
             id="search-by"
@@ -23,8 +23,10 @@ function SearchForm() {
           >
             <option value="first_name">First Name</option>
             <option value="last_name">Last Name</option>
-            <option value="city">City</option>
             <option value="email">Email</option>
+            <option value="address">Address</option>
+            <option value="city">City</option>
+            <option value="state">State</option>
           </select>
           for:
         </div>
