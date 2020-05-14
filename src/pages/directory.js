@@ -7,66 +7,47 @@ import EmployeeTable from "../components/EmployeeTable";
 import SearchForm from "../components/SearchForm";
 import Employees from "../employees.json";
 import EmployeeContext from "../utils/EmployeeContext.js";
-import Alert from "../components/Alert";
 
 function Directory() {
   const [search, setSearch] = useState("");
   const [searchOption, setSearchOption] = useState("first_name");
   const [employees, setEmployees] = useState(Employees);
 
-  function searchTerms(search) {
-    // console.log(`searching for ${search} in employees`);
-    var searchField = "first_name";
-
-    console.log(`search option is: ${searchOption}`)
-
-    switch (searchOption) {
-      case "last_name":
-        searchField = "last_name";
-        break;
-      case "city":
-        searchField = "city";
-        break;
-
-      default:
-        break;
-    }
-
-    setSearchOption(searchOption)
-
-    return new Promise((resolve, reject) => {
-      if (!search) {
-        resolve(Employees);
-      }
-      let fEmployees = Employees.filter((i) =>
-        i[searchField].toLowerCase().startsWith(search)
-      );
-      resolve(fEmployees);
-    });
-  }
-
   useEffect(() => {
     document.title = "EYP | Directory";
+
+    function searchTerms(search) {
+      return new Promise((resolve) => {
+        if (!search) {
+          resolve(Employees);
+        }
+        let fEmployees = Employees.filter((i) =>
+          i[searchOption].toLowerCase().startsWith(search)
+        );
+        resolve(fEmployees);
+      });
+    }
+
     searchTerms(search).then((res) => {
       if (res.length === 0) {
-        // throw new Error("No results found.");
         console.log("No results found.");
       }
 
       setEmployees(res);
     });
-  }, [search]);
+  }, [search, searchOption]);
 
-  const handleInputChange = (event) => {
+  const handleSelectChange = (event) => {
+    if (!event.target.value) {
+      setSearchOption("first_name");
+    }
+    setSearch(search);
+    setSearchOption(event.target.value);
+  };
+  const handleSearchChange = (event) => {
     if (!event.target.value) {
       setSearch("");
-      // console.log(`change`, event.target.value);
     }
-    setSearch(event.target.value);
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
     setSearch(event.target.value);
   };
 
@@ -76,7 +57,13 @@ function Directory() {
         <h1>The Employee Yellow Pages!</h1>
       </Jumbotron>
       <EmployeeContext.Provider
-        value={{ employees, search, handleFormSubmit, handleInputChange, searchOption }}
+        value={{
+          employees,
+          search,
+          handleSearchChange,
+          handleSelectChange,
+          searchOption,
+        }}
       >
         <div>
           <Container
@@ -84,17 +71,8 @@ function Directory() {
             style={{ marginTop: 30, textAlign: "center" }}
           >
             <Row>
-              <Alert
-                type="danger"
-                // style={{ opacity: error ? 1 : 0, marginBottom: 10 }}
-              >
-                {/* {error} */}
-              </Alert>
-              <div className="col-8">
+              <div className="col-12">
                 <SearchForm />
-              </div>
-              <div className="col-4">
-                <button>Filter by...</button>
               </div>
             </Row>
             <Row style={{ padding: "inherit" }}>

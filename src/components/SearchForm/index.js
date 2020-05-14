@@ -4,33 +4,36 @@ import EmployeeContext from "../../utils/EmployeeContext";
 
 // Using the datalist element we can create autofill suggestions based on employees?
 function SearchForm(props) {
-  const { handleInputChange, search, search_option } = useContext(EmployeeContext);
+  const { handleSearchChange, search, handleSelectChange } = useContext(EmployeeContext);
   return (
-    <form className="search">
-      <div className="form-group">
-        <label htmlFor="search-select">Search By:</label>
+    <form className="search col">
+      <div className="form-group col">
+        <label htmlFor="search-by">Search By:</label>
 
-        <select name="search-options" id="search-select">
+        <select
+          name="search-options"
+          id="search-by"
+          onChange={handleSelectChange}
+        >
           <option value="first_name">First Name</option>
           <option value="last_name">Last Name</option>
           <option value="city">City</option>
-          {/* <option value="hamster">Hamster</option>
-          <option value="parrot">Parrot</option>
-          <option value="spider">Spider</option>
-          <option value="goldfish">Goldfish</option> */}
         </select>
         <input
           autoComplete="off"
           value={search}
-          onChange={handleInputChange}
+          onChange={handleSearchChange}
           name="term"
-          list="term"
           type="text"
-          className="form-control"
+          className="form-controol"
           placeholder="Type in a search term to begin"
           id="term"
         />
+
       </div>
+      {/* <div>
+        Or Filter
+      </div> */}
     </form>
   );
 }

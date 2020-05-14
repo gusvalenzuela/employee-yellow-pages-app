@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext } from "react";
+import React, { useState, useMemo, useContext, useEffect } from "react";
 import EmployeeContext from "../../utils/EmployeeContext";
 
 import "./style.css";
@@ -7,6 +7,9 @@ const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = useState(config);
 
   // console.log(employeeObj)
+  useEffect(()=>{
+    requestSort("first_name")
+  },[])
 
   const sortedItems = useMemo(() => {
     let sortableItems = [...items];

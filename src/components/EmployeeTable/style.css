@@ -18,7 +18,15 @@ thead button {
   font-size: inherit;
   padding: 0.5em 1em;
   margin-bottom: 1px;
-  width: 100% ;
+  width: 100%;
+}
+thead button:focus {
+  outline: none !important;
+}
+thead button.ascending:enabled,
+thead button.descending:enabled {
+  background: #ffff0077;
+  outline: none !important;
 }
 
 thead button.ascending::after {
