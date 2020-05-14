@@ -7,6 +7,7 @@ import EmployeeTable from "../components/EmployeeTable";
 import SearchForm from "../components/SearchForm";
 import Employees from "../employees.json";
 import EmployeeContext from "../utils/EmployeeContext.js";
+// import PageHolder from "../components/PageHolder";
 
 function Directory() {
   const [search, setSearch] = useState("");
@@ -71,10 +72,15 @@ function Directory() {
             style={{ marginTop: 30, textAlign: "center" }}
           >
             <Row>
-              <div className="col-12">
+              <Col size="12">
                 <SearchForm />
-              </div>
+              </Col>
             </Row>
+            {/* <Row>
+              <Col size="12">
+                <PageHolder />
+              </Col>
+            </Row> */}
             <Row style={{ padding: "inherit" }}>
               <Col size="12">
                 <EmployeeTable />
