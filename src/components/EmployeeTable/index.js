@@ -10,7 +10,6 @@ const useSortableData = (
   }
 ) => {
   const [sortConfig, setSortConfig] = useState(config);
-  // console.log(employeeObj)
 
   const sortedItems = useMemo(() => {
     let sortableItems = [...items];
@@ -45,6 +44,7 @@ const useSortableData = (
 
 const EmployeeTable = () => {
   const { employees } = useContext(EmployeeContext);
+
   const { data, requestSort, sortConfig } = useSortableData(employees);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
@@ -75,15 +75,24 @@ const EmployeeTable = () => {
               Last Name
             </button>
           </th>
-          {/* <th>
+          <th>
             <button
               type="button"
-              onClick={() => requestSort("company_name")}
-              className={getClassNamesFor("company_name")}
+              onClick={() => requestSort("email")}
+              className={getClassNamesFor("email")}
             >
-              Company
+              Email
             </button>
-          </th> */}
+          </th>
+          <th>
+            <button
+              type="button"
+              onClick={() => requestSort("address")}
+              className={getClassNamesFor("address")}
+            >
+              Address
+            </button>
+          </th>
           <th>
             <button
               type="button"
@@ -100,7 +109,8 @@ const EmployeeTable = () => {
           <tr key={employee.id}>
             <td>{employee.first_name}</td>
             <td>{employee.last_name}</td>
-            {/* <td>{employee.company_name}</td> */}
+            <td>{employee.email}</td>
+            <td>{employee.address}</td>
             <td>
               {employee.city}, {employee.state}
             </td>

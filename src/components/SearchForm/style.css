@@ -7,21 +7,30 @@ form.search button[type="submit"] {
   float: right;
   margin-top: 10px;
 }
-
-select,
 input {
   border: none;
   border-bottom: 1px solid #010101;
   margin: 0 1rem 0 0.25rem;
 }
-select:focus{
+
+select {
+  border: none;
+  border-bottom: 1px solid #010101;
+  margin: 0 1rem 0 0.25rem;
+}
+select:focus {
   outline: none;
 }
 .form-controol {
   width: 100%;
   padding: 0 0.25rem;
+  background: #eeeeee !important;
 }
-
+@media screen and (max-width: 768px) {
+  .form-controol {
+    width: 50%;
+  }
+}
 .form-controol:focus {
   background: #eeeeee !important;
   outline: none !important;
@@ -29,3 +38,10 @@ select:focus{
 /* .form-controol::after{
   box-sizing: none !important;
 } */
+#alpha-filter-list button {
+  text-decoration: underline;
+  color: #0202ff;
+  background: none;
+  margin: auto;
+  border: none;
+}

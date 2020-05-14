@@ -11,6 +11,7 @@ import EmployeeContext from "../utils/EmployeeContext.js";
 
 function Directory() {
   const [search, setSearch] = useState("");
+  const [filter, setFilter ] = useState("");
   const [searchOption, setSearchOption] = useState("first_name");
   const [employees, setEmployees] = useState(Employees);
 
@@ -23,7 +24,7 @@ function Directory() {
           resolve(Employees);
         }
         let fEmployees = Employees.filter((i) =>
-          i[searchOption].toLowerCase().startsWith(search.toLowerCase())
+          i[searchOption].toLowerCase().includes(search.toLowerCase())
         );
         resolve(fEmployees);
       });
@@ -38,6 +39,30 @@ function Directory() {
     });
   }, [search, searchOption]);
 
+  useEffect(() => {
+
+    function searchTerms(filter) {
+      return new Promise((resolve) => {
+        if (!filter) {
+          resolve(Employees);
+        }
+        let fEmployees = Employees.filter((i) =>
+        // starts with for when looking by beginning letter
+          i[searchOption].toLowerCase().startsWith(filter.toLowerCase())
+        );
+        resolve(fEmployees);
+      });
+    }
+
+    searchTerms(filter).then((res) => {
+      if (res.length === 0) {
+        console.log("No results found.");
+      }
+
+      setEmployees(res);
+    });
+  }, [filter, searchOption]);
+
   const handleSelectChange = (event) => {
     if (!event.target.value) {
       setSearchOption("first_name");
@@ -51,6 +76,13 @@ function Directory() {
     }
     setSearch(event.target.value);
   };
+  const handleFilterClick = (event) => {
+    if (event.target.value !== undefined) {
+      setFilter(event.target.value);
+    }
+    console.log(event.target.value)
+    // setSearch(event.target.value);
+  };
 
   return (
     <div>
@@ -61,9 +93,11 @@ function Directory() {
         value={{
           employees,
           search,
+          filter,
+          searchOption,
           handleSearchChange,
           handleSelectChange,
-          searchOption,
+          handleFilterClick,
         }}
       >
         <div>
