@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import "./style.css";
 import EmployeeContext from "../../utils/EmployeeContext";
 
-// Using the datalist element we can create autofill suggestions based on employees?
-function SearchForm(props) {
-  const { handleSearchChange, search, handleSelectChange } = useContext(EmployeeContext);
+function SearchForm() {
+  const { handleSearchChange, search, handleSelectChange } = useContext(
+    EmployeeContext
+  );
   return (
-    <form className="search col">
-      <div className="form-group col">
+    <div className="form-group row">
+      <div className="col-md-auto">
         <label htmlFor="search-by">Search By:</label>
 
         <select
@@ -19,6 +20,8 @@ function SearchForm(props) {
           <option value="last_name">Last Name</option>
           <option value="city">City</option>
         </select>
+      </div>
+      <div className="col-md-8">
         <input
           autoComplete="off"
           value={search}
@@ -29,12 +32,12 @@ function SearchForm(props) {
           placeholder="Type in a search term to begin"
           id="term"
         />
-
       </div>
+
       {/* <div>
-        Or Filter
-      </div> */}
-    </form>
+  Or Filter
+</div> */}
+    </div>
   );
 }
 

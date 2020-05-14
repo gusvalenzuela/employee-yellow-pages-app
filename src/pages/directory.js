@@ -23,7 +23,7 @@ function Directory() {
           resolve(Employees);
         }
         let fEmployees = Employees.filter((i) =>
-          i[searchOption].toLowerCase().startsWith(search)
+          i[searchOption].toLowerCase().startsWith(search.toLowerCase())
         );
         resolve(fEmployees);
       });

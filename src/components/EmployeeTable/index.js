@@ -1,19 +1,19 @@
-import React, { useState, useMemo, useContext, useEffect } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import EmployeeContext from "../../utils/EmployeeContext";
-
 import "./style.css";
 
-const useSortableData = (items, config = null) => {
+const useSortableData = (
+  items,
+  config = {
+    key: "first_name",
+    direction: "ascending",
+  }
+) => {
   const [sortConfig, setSortConfig] = useState(config);
-
   // console.log(employeeObj)
-  useEffect(()=>{
-    requestSort("first_name")
-  },[])
 
   const sortedItems = useMemo(() => {
     let sortableItems = [...items];
-    // console.log(sortableItems);
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
