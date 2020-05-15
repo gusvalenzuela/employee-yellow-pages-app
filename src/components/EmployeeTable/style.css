@@ -20,7 +20,7 @@ thead button {
   font-family: inherit;
   font-weight: 700;
   font-size: inherit;
-  padding: 0.5em 1em;
+  padding: 0.5em 0.25rem;
   margin-bottom: 1px;
   width: 100%;
 }
@@ -35,12 +35,12 @@ thead button.descending:enabled {
 
 thead button.ascending::after {
   content: "🔽";
-  margin-left: 0.75rem;
+  margin-left: 0.5rem;
 }
 
 thead button.descending::after {
   content: "🔼";
-  margin-left: 0.75rem;
+  margin-left: 0.5rem;
 }
 
 tbody td {

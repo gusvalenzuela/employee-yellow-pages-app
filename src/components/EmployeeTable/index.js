@@ -47,37 +47,12 @@ const EmployeeTable = () => {
 
   const { data, requestSort, sortConfig } = useSortableData(employees);
 
-  const titlesArray = [
-    `Human Resources`,
-    `Sales I`,
-    `Support`,
-    `Engineering I`,
-    `Engineering II`,
-    `Engineering III`,
-    `Management`,
-    `Accounting`,
-    `Accounts Payable`,
-    `Sales II`,
-    `Sales III`,
-    `Developer I`,
-    `Developer II`,
-    `Developer III`,
-    `Developer IV`,
-    `Developer V`,
-  ];
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
     }
     return sortConfig.key === name ? sortConfig.direction : undefined;
   };
-  data.forEach((i) => {
-    var randomIndex = Math.floor(Math.random() * titlesArray.length);
-    i.title = titlesArray[randomIndex];
-    return i;
-  });
-
-  console.log(data);
 
   return (
     <div className="table-responsive">
@@ -90,7 +65,7 @@ const EmployeeTable = () => {
                 onClick={() => requestSort("first_name")}
                 className={getClassNamesFor("first_name")}
               >
-                First Name
+                FIRST NAME
               </button>
             </th>
             <th>
@@ -99,16 +74,16 @@ const EmployeeTable = () => {
                 onClick={() => requestSort("last_name")}
                 className={getClassNamesFor("last_name")}
               >
-                Last Name
+                LAST NAME
               </button>
             </th>
             <th>
               <button
                 type="button"
-                // onClick={() => requestSort("title")}
+                onClick={() => requestSort("title")}
                 className={getClassNamesFor("title")}
               >
-                Title
+                TITLE
               </button>
             </th>
             <th>
@@ -117,7 +92,7 @@ const EmployeeTable = () => {
                 onClick={() => requestSort("email")}
                 className={getClassNamesFor("email")}
               >
-                Email
+                EMAIL
               </button>
             </th>
 
@@ -127,7 +102,7 @@ const EmployeeTable = () => {
                 onClick={() => requestSort("city")}
                 className={getClassNamesFor("city")}
               >
-                Location
+                LOCATION
               </button>
             </th>
           </tr>
