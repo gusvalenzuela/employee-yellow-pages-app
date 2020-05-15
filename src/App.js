@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Jumbotron>
         <h1>The Employee Yellow Pages!</h1>
-        <h3>They're good people, Brent.</h3>
+        <h3 className="lead">They're good people, Brent.</h3>
       </Jumbotron>
       <Wrapper>
         <Route exact path="/" component={Directory} />

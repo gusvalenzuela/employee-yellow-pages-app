@@ -46,7 +46,7 @@ thead button.descending::after {
 tbody td {
   padding: 0.25em;
   text-align: left;
-  min-width: 150px;
+  min-width: 120px;
   border-bottom: 1px solid #ccc;
 }
 

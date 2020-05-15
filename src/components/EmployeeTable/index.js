@@ -65,7 +65,7 @@ const EmployeeTable = () => {
                 onClick={() => requestSort("first_name")}
                 className={getClassNamesFor("first_name")}
               >
-                FIRST NAME
+                FIRST
               </button>
             </th>
             <th>
@@ -74,7 +74,7 @@ const EmployeeTable = () => {
                 onClick={() => requestSort("last_name")}
                 className={getClassNamesFor("last_name")}
               >
-                LAST NAME
+                LAST
               </button>
             </th>
             <th>
