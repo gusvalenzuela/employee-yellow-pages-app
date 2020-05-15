@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Jumbotron from "../components/Jumbotron";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
@@ -94,10 +93,7 @@ function Directory() {
 
   return (
     <div>
-      <Jumbotron>
-        <h1>The Employee Yellow Pages!</h1>
-        <h3>They're good people, Brent.</h3>
-      </Jumbotron>
+      
       <EmployeeContext.Provider
         value={{
           employees,

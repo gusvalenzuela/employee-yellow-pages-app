@@ -36,7 +36,7 @@ function SearchForm() {
             value={search}
             onChange={handleSearchChange}
             name="term"
-            type="text"
+            type="search"
             className="form-controol"
             placeholder="Type here to begin search"
             id="term"

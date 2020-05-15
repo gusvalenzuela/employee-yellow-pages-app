@@ -46,78 +46,107 @@ const EmployeeTable = () => {
   const { employees } = useContext(EmployeeContext);
 
   const { data, requestSort, sortConfig } = useSortableData(employees);
+
+  const titlesArray = [
+    `Human Resources`,
+    `Sales I`,
+    `Support`,
+    `Engineering I`,
+    `Engineering II`,
+    `Engineering III`,
+    `Management`,
+    `Accounting`,
+    `Accounts Payable`,
+    `Sales II`,
+    `Sales III`,
+    `Developer I`,
+    `Developer II`,
+    `Developer III`,
+    `Developer IV`,
+    `Developer V`,
+  ];
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
     }
     return sortConfig.key === name ? sortConfig.direction : undefined;
   };
+  data.forEach((i) => {
+    var randomIndex = Math.floor(Math.random() * titlesArray.length);
+    i.title = titlesArray[randomIndex];
+    return i;
+  });
+
+  console.log(data);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>
-            <button
-              type="button"
-              onClick={() => requestSort("first_name")}
-              className={getClassNamesFor("first_name")}
-            >
-              First Name
-            </button>
-          </th>
-          <th>
-            <button
-              type="button"
-              onClick={() => requestSort("last_name")}
-              className={getClassNamesFor("last_name")}
-            >
-              Last Name
-            </button>
-          </th>
-          <th>
-            <button
-              type="button"
-              onClick={() => requestSort("email")}
-              className={getClassNamesFor("email")}
-            >
-              Email
-            </button>
-          </th>
-          <th>
-            <button
-              type="button"
-              onClick={() => requestSort("address")}
-              className={getClassNamesFor("address")}
-            >
-              Address
-            </button>
-          </th>
-          <th>
-            <button
-              type="button"
-              onClick={() => requestSort("city")}
-              className={getClassNamesFor("city")}
-            >
-              City, State
-            </button>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((employee) => (
-          <tr key={employee.id}>
-            <td>{employee.first_name}</td>
-            <td>{employee.last_name}</td>
-            <td>{employee.email}</td>
-            <td>{employee.address}</td>
-            <td>
-              {employee.city}, {employee.state}
-            </td>
+    <div className="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort("first_name")}
+                className={getClassNamesFor("first_name")}
+              >
+                First Name
+              </button>
+            </th>
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort("last_name")}
+                className={getClassNamesFor("last_name")}
+              >
+                Last Name
+              </button>
+            </th>
+            <th>
+              <button
+                type="button"
+                // onClick={() => requestSort("title")}
+                className={getClassNamesFor("title")}
+              >
+                Title
+              </button>
+            </th>
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort("email")}
+                className={getClassNamesFor("email")}
+              >
+                Email
+              </button>
+            </th>
+
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort("city")}
+                className={getClassNamesFor("city")}
+              >
+                Location
+              </button>
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.map((employee) => (
+            <tr key={employee.id}>
+              <td>{employee.first_name}</td>
+              <td>{employee.last_name}</td>
+              <td>{employee.title}</td>
+              <td>{employee.email}</td>
+              <td>
+                {employee.city}, {employee.state}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
