@@ -7,11 +7,13 @@ function SearchForm() {
     handleSearchChange,
     search,
     searchOption,
+    filter,
     handleSelectChange,
     handleFilterClick,
+    handleClear,
+    employees,
   } = useContext(EmployeeContext);
   const alphaCharacters = `abcdefghijklmnopqrstuvwxyz`.toUpperCase();
-
   let currentSearchOption = searchOption.split(`_`).join(` `);
   return (
     <div className="mb-3 px-2">
@@ -49,7 +51,7 @@ function SearchForm() {
 
       {/* filter rows  */}
 
-      <div className="row">
+      <div className="row justify-content-center">
         <div className="col-12">
           Or filter {currentSearchOption.toUpperCase()} by:
         </div>
@@ -59,10 +61,19 @@ function SearchForm() {
           onClick={handleFilterClick}
         >
           {alphaCharacters.split(``).map((char) => (
-            <button value={char} key={char}>
+            <button
+              className={char === filter ? `active-filter` : ``}
+              value={char}
+              key={char}
+            >
               {char}
             </button>
           ))}
+        </div>
+        <div className="mt-2 col-6">
+          <button key="clearbtn" onClick={handleClear}>
+            clear search/filter
+          </button>
         </div>
       </div>
     </div>

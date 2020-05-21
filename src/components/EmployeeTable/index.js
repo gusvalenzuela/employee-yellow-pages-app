@@ -43,7 +43,7 @@ const useSortableData = (
 };
 
 const EmployeeTable = () => {
-  const { employees } = useContext(EmployeeContext);
+  const { employees, searchOption } = useContext(EmployeeContext);
 
   const { data, requestSort, sortConfig } = useSortableData(employees);
 
@@ -110,11 +110,25 @@ const EmployeeTable = () => {
         <tbody>
           {data.map((employee) => (
             <tr key={employee.id}>
-              <td>{employee.first_name}</td>
-              <td>{employee.last_name}</td>
-              <td>{employee.title}</td>
-              <td>{employee.email}</td>
-              <td>
+              <td className={searchOption === "first_name" ? "wow" : ""}>
+                {employee.first_name}
+              </td>
+              <td className={searchOption === "last_name" ? "wow" : ""}>
+                {employee.last_name}
+              </td>
+              <td className={searchOption === "title" ? "wow" : ""}>
+                {employee.title}
+              </td>
+              <td className={searchOption === "email" ? "wow" : ""}>
+                {employee.email}
+              </td>
+              <td
+                className={
+                  searchOption === "city" || searchOption === "state"
+                    ? "wow"
+                    : ""
+                }
+              >
                 {employee.city}, {employee.state}
               </td>
             </tr>

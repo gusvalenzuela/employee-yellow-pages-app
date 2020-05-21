@@ -12,6 +12,7 @@ https://confident-goodall-b01ec7.netlify.app/
 - SORT by simplying clicking on the title of the column. Alternates between ascending and descending.
 
 # TODOs
+- Clear filter button.
 - Different filter options depending on type of field chosen.
 - Move filter options to component. Place component next to field name.
 - Filtered column is highlighted.

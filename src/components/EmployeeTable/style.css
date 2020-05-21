@@ -1,6 +1,13 @@
+:root {
+  --main-bg: #ff897467;
+  --main-bg-old: #fff67467;
+}
 table {
   width: 100%;
   border-collapse: collapse;
+}
+.wow {
+  background: var(--main-bg);
 }
 
 .table-responsive {
@@ -29,7 +36,7 @@ thead button:focus {
 }
 thead button.ascending:enabled,
 thead button.descending:enabled {
-  background: #ffff0077;
+  background: #aaaaaa;
   outline: none !important;
 }
 

@@ -22,7 +22,7 @@ function Directory() {
 
     function searchTerms(search) {
       return new Promise((resolve) => {
-        if (!search) {
+        if (!search || search === "") {
           resolve(Employees);
         }
         let fEmployees = Employees.filter((i) =>
@@ -42,13 +42,12 @@ function Directory() {
         setAlert(false);
       }
     });
-    
   }, [search, searchOption]);
 
   useEffect(() => {
     function searchTerms(filter) {
       return new Promise((resolve) => {
-        if (!filter) {
+        if (!filter || filter === "") {
           resolve(Employees);
         }
         let fEmployees = Employees.filter((i) =>
@@ -60,7 +59,6 @@ function Directory() {
     }
 
     searchTerms(filter).then((res) => {
-      setSearch("");
       setEmployees(res);
       if (res.length === 0) {
         console.log("No results found.");
@@ -91,10 +89,13 @@ function Directory() {
     setFilterOption(searchOption);
     setSearch(search);
   };
+  const handleClear = () => {
+    setFilter("");
+    setSearch("");
+  };
 
   return (
     <div>
-      
       <EmployeeContext.Provider
         value={{
           employees,
@@ -104,6 +105,7 @@ function Directory() {
           handleSearchChange,
           handleSelectChange,
           handleFilterClick,
+          handleClear,
         }}
       >
         <div>
